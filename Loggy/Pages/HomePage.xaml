@@ -1,0 +1,89 @@
+﻿<Page x:Class="Loggy.Pages.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Loggy.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1080"
+      Title="HomePage">
+
+    <StackPanel Width="{StaticResource containerWidth}" HorizontalAlignment="Center">
+        <StackPanel Margin="0, 100, 0, 0" Orientation="Horizontal">
+            <Border Width="{StaticResource containerWidth}" CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource scbBorderColor}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="100"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="labelFilePath" Content="{Binding FilePath}" Grid.Column="0" Grid.Row="0" Margin="10, 0" FontSize="14" VerticalAlignment="Center" FontWeight="Light" Foreground="#888"></Label>
+                    <Border CornerRadius="0, 2, 2, 0" Grid.Column="1" Grid.Row="0" Background="#dde3e7">
+                        <Button Click="LoadFileOnclick" FontSize="14" BorderThickness="1, 0, 0, 0" Background="Transparent">Browse File</Button>
+                    </Border>
+                </Grid>
+            </Border>
+        </StackPanel>
+        <StackPanel
+        Margin="0, 40, 0, 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Rectangle
+            x:Name="dropZone"
+            StrokeDashArray="6.0 6.0" Stroke="{StaticResource scbBorderColor}" StrokeThickness="2" RadiusX="2" RadiusY="2" />
+
+                <StackPanel
+                    AllowDrop="True"
+                    DragEnter="dragEnter"
+                    DragOver="dragOver"
+                    Drop="dragDrop"
+                    Width="{StaticResource containerWidth}" Height="150">
+
+                    <Border Width="{StaticResource containerWidth}" Height="150">
+                        <StackPanel Width="{StaticResource containerWidth}" Height="150">
+                            <Image Margin="10, 20, 10, 0"  Height="80" HorizontalAlignment="Center" Source="/Assets/Images/upload.png"/>
+
+                            <Label Margin="10, -5, 10, 20" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Content="Browse File">
+                            </Label>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <Grid Margin="0, 40, 0, 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="180"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Grid.Row="0" Style="{StaticResource border}" Background="#dde3e7">
+                <ComboBox VerticalContentAlignment="Center" Padding="15, 0, 15, 0" Grid.Column="0" Grid.Row="0" SelectedIndex="0" BorderBrush="{StaticResource scbBorderColor}" BorderThickness="0" >
+                    <ComboBoxItem Content="--- Choose your log format ---"/>
+                    <ComboBoxItem Content="Option 2"/>
+                </ComboBox>
+            </Border>
+
+            <Border Style="{StaticResource border}" Grid.Column="1" Grid.Row="0" Margin="10, 0, 0, 0" Background="#dde3e7">
+                <Button Background="Transparent" BorderThickness="0">Manage your formats</Button>
+            </Border>
+        </Grid>
+
+        <Border Height="30" Style="{StaticResource border}" Grid.Column="1" Grid.Row="0" Margin="0, 30, 0, 0" Background="#dde3e7">
+            <Button Background="Transparent" BorderThickness="0">Open logs</Button>
+        </Border>
+
+    </StackPanel>
+</Page>
