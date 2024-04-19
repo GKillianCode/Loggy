@@ -12,7 +12,7 @@ namespace Loggy.Pages
     /// <summary>
     /// Logique d'interaction pour HomePage.xaml
     /// </summary>
-    public partial class HomePage : Page
+    public partial class HomePage : Page, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -49,10 +49,9 @@ namespace Loggy.Pages
             openFileDialog.Filter = "Fichiers de journal (*.log)|*.log";
             if (openFileDialog.ShowDialog() == true)
             {
-                log.setPath(openFileDialog.FileName);
-                log.setContent(File.ReadAllText(log.getPath()));
-
-                FilePath = log.getPath();
+                log.Path = openFileDialog.FileName;
+                log.Content = File.ReadAllText(log.Path);
+                FilePath = log.Path;
             }
         }
 
@@ -94,12 +93,9 @@ namespace Loggy.Pages
 
                 if (Path.GetExtension(file).Equals(".log", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine(file);
-                    log.setPath(file);
-                    log.setContent(File.ReadAllText(log.getPath()));
-
-                    FilePath = log.getPath();
-
+                    log.Path = file;
+                    log.Content = File.ReadAllText(log.Path);
+                    FilePath = log.Path;
                 }
                 else
                 {

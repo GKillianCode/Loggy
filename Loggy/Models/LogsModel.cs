@@ -46,21 +46,25 @@ namespace Loggy.Models
             }
         }
 
-        public string getPath() { return _path; }
-        public string getContent() { return _content; }
-
-        public LogViewModel getLogs() { return logs; }
-
-        public void setPath(string path) { this._path = path; }
-        public void setContent(string content)
+        public string Path
         {
-            this._content = content;
-            AnalyseContent();
+            get { return _path; }
+            set { _path = value; }
         }
+        public string Content
+        {
+            get { return _content; }
+            set
+            {
+                _content = value;
+                AnalyseContent();
+            }
+        }
+        public LogViewModel Log { get { return logs; } }
 
-        public int getNbAlertDebug() { return _nbAlertDebug; }
-        public int getNbAlertInfo() { return _nbAlertInfo; }
-        public int getNbAlertAlert() { return _nbAlertWarning; }
-        public int getNbAlertError() { return _nbAlertError; }
+        public int NbAlertDebug { get { return _nbAlertDebug; } }
+        public int NbAlertInfo { get { return _nbAlertInfo; } }
+        public int NbAlertAlert { get { return _nbAlertWarning; } }
+        public int NbAlertError { get { return _nbAlertError; } }
     }
 }
