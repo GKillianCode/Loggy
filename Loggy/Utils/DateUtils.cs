@@ -14,8 +14,9 @@ namespace Loggy.Utils
 
             DateTime result;
 
-            if (DateTime.TryParseExact(dateString, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out result))
+            if (DateTime.TryParseExact(dateString, format, CultureInfo.DefaultThreadCurrentCulture, DateTimeStyles.None, out result))
             {
+                Console.WriteLine(result);
                 return result;
             }
             else

@@ -10,6 +10,7 @@
 
     <StackPanel Width="{StaticResource containerWidth}" HorizontalAlignment="Center">
         <StackPanel Margin="0, 100, 0, 0" Orientation="Horizontal">
+
             <Border Width="{StaticResource containerWidth}" CornerRadius="2" BorderThickness="1" BorderBrush="{StaticResource scbBorderColor}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -80,7 +81,7 @@
         </Grid>
 
         <Border Height="30" Style="{StaticResource border}" Grid.Column="1" Grid.Row="0" Margin="0, 30, 0, 0" Background="#dde3e7">
-            <Button Background="Transparent" BorderThickness="0">Open logs</Button>
+            <Button Background="Transparent" BorderThickness="0" Click="RedirectOnclick">Open logs</Button>
         </Border>
 
     </StackPanel>

@@ -53,6 +53,7 @@ namespace Loggy.Pages
                 log.Path = openFileDialog.FileName;
                 log.Content = File.ReadAllText(log.Path);
                 FilePath = log.Path;
+                MessageBox.Show("Fichier chargé avec succes", "File loaded", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -104,11 +105,35 @@ namespace Loggy.Pages
                     log.Path = file;
                     log.Content = File.ReadAllText(log.Path);
                     FilePath = log.Path;
+                    MessageBox.Show("Fichier chargé avec succes", "File loaded", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez déposer uniquement des fichiers .log", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Veuillez déposer uniquement des fichiers .log", "File type error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+            }
+        }
+
+        private Frame getParentFrame(DependencyObject current)
+        {
+            while (current != null)
+            {
+                if (current is Frame frame)
+                {
+                    return frame;
+                }
+                current = VisualTreeHelper.GetParent(current);
+            }
+            return null;
+        }
+
+        private void RedirectOnclick(object sender, RoutedEventArgs e)
+        {
+            if (log.Path != null && log.Content != null)
+            {
+                Frame parentFrame = getParentFrame(this);
+
+                parentFrame.Navigate(new LogsPage(log.Log));
             }
         }
 

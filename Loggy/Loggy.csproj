@@ -60,6 +60,9 @@
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LogsPage.xaml.cs">
+      <DependentUpon>LogsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Services\LogsService.cs" />
     <Compile Include="Utils\DateUtils.cs" />
     <Compile Include="ViewModels\LogItemViewModel.cs" />
@@ -77,6 +80,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\LogsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

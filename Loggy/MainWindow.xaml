@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Loggy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1080" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="800" Width="1280" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
     <Frame x:Name="_mainFrame" Background="{StaticResource scbWhite}"></Frame>
 </Window>
