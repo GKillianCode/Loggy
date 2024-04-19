@@ -36,15 +36,15 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
-                <Rectangle
-            x:Name="dropZone"
+
+                <Rectangle x:Name="dropZone" Fill="#f5f4f6"
             StrokeDashArray="6.0 6.0" Stroke="{StaticResource scbBorderColor}" StrokeThickness="2" RadiusX="2" RadiusY="2" />
 
                 <StackPanel
                     AllowDrop="True"
                     DragEnter="dragEnter"
                     DragOver="dragOver"
+                    DragLeave="dragLeave"
                     Drop="dragDrop"
                     Width="{StaticResource containerWidth}" Height="150" Background="Transparent">
 

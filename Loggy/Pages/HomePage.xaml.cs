@@ -6,6 +6,7 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Loggy.Pages
 {
@@ -74,11 +75,17 @@ namespace Loggy.Pages
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 e.Effects = DragDropEffects.Copy;
+                dropZone.Stroke = (Brush)FindResource("scbYellow");
             }
             else
             {
                 e.Effects = DragDropEffects.None;
             }
+        }
+
+        private void dragLeave(object sender, DragEventArgs e)
+        {
+            dropZone.Stroke = (Brush)FindResource("scbBorderColor");
         }
 
         private void dragDrop(object sender, DragEventArgs e)
@@ -89,6 +96,7 @@ namespace Loggy.Pages
 
             if (files.Length > 0)
             {
+                dropZone.Stroke = (Brush)FindResource("scbBorderColor");
                 string file = files[0];
 
                 if (Path.GetExtension(file).Equals(".log", StringComparison.OrdinalIgnoreCase))
