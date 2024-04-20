@@ -48,7 +48,7 @@ namespace Loggy.Pages
 
             ObservableCollection<LogItemViewModel> pageItems = new ObservableCollection<LogItemViewModel>();
 
-            for (int i = startIndex; i > endIndex; i--)
+            for (int i = startIndex; i >= endIndex; i--)
             {
                 Console.WriteLine($"{i} {logViewModel.LogItems[i].Processus} {logViewModel.LogItems[i].Description}");
                 pageItems.Add(logViewModel.LogItems[i]);

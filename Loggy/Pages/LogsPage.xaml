@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Loggy.Pages"
+      xmlns:Converters="clr-namespace:Loggy.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1080"
       Title="LogsPage">
@@ -48,6 +49,8 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Converters:ColorConverter x:Key="ColorConverter" />
     </Page.Resources>
 
     <Grid>
@@ -86,7 +89,7 @@
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="90"/>
+                                    <ColumnDefinition Width="85"/>
                                     <ColumnDefinition Width="200"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
@@ -103,39 +106,40 @@
                             </Grid>
                         </Border>
 
-                        <ListView Style="{DynamicResource ListViewStyle1}" Margin="10,2" x:Name="l_logs" ItemsSource="{Binding ListLog}" BorderThickness="0">
-                            <ListView.ItemTemplate>
-                                <DataTemplate DataType="LogItemViewModel">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ListView Height="640" Style="{DynamicResource ListViewStyle1}" Margin="10,2" x:Name="l_logs" ItemsSource="{Binding ListLog}" BorderThickness="0">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate DataType="LogItemViewModel">
 
-                                    <Border Padding="0,5" BorderThickness="0">
-                                        <Grid VerticalAlignment="Center">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="Auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="90"/>
-                                                <ColumnDefinition Width="200"/>
-                                                <ColumnDefinition Width="600"/>
-                                            </Grid.ColumnDefinitions>
+                                        <Border Padding="0,5" BorderThickness="0">
+                                            <Grid VerticalAlignment="Center">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="90"/>
+                                                    <ColumnDefinition Width="200"/>
+                                                    <ColumnDefinition Width="600"/>
+                                                </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Template="{StaticResource AlertLabel}" Style="{StaticResource alertError}" Content="{Binding AlertType}" />
+                                                <Label Grid.Row="0" Grid.Column="0" HorizontalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Left" VerticalContentAlignment="Center" Template="{StaticResource AlertLabel}" Content="{Binding AlertType}" Style="{Binding AlertType, Converter={StaticResource ColorConverter}}" />
 
-                                            <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                                <TextBlock Text="{Binding DateTime}" />
-                                                <TextBlock Margin="5,0,0,0">/</TextBlock>
-                                            </StackPanel>
+                                                <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding DateTime}" />
+                                                    <TextBlock Margin="5,0,0,0">/</TextBlock>
+                                                </StackPanel>
 
-                                            <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
-                                                <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Processus}" />
-                                            </StackPanel>
-                                        </Grid>
-                                    </Border>
+                                                <StackPanel VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+                                                    <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding Processus}" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Border>
 
 
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
                     </StackPanel>
 
                 </TabItem>
