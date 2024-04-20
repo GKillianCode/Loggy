@@ -7,5 +7,5 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1280" WindowStyle="ThreeDBorderWindow" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
-    <Frame x:Name="_mainFrame" Background="{StaticResource scbWhite}"></Frame>
+    <Frame x:Name="_mainFrame" Background="{StaticResource scbWhite}" NavigationUIVisibility="Hidden"></Frame>
 </Window>
