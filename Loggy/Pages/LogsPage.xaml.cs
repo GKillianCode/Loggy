@@ -12,8 +12,9 @@ namespace Loggy.Pages
     {
         public ObservableCollection<LogItemViewModel> ListLog { get; set; }
         private LogViewModel logViewModel;
-        private int nbItemsPerPage = 10;
+        private int nbItemsPerPage = 60;
         private int currentPage = 1;
+        private int nbPage = 0;
 
         public LogsPage(LogViewModel logViewModel)
         {
@@ -21,9 +22,8 @@ namespace Loggy.Pages
             DataContext = this;
 
             this.logViewModel = logViewModel;
+            this.nbPage = CountNbPage();
             this.ListLog = GetLogsByPage(currentPage);
-
-            Console.WriteLine(ListLog.Count);
         }
 
         private int CountNbPage()
@@ -39,38 +39,24 @@ namespace Loggy.Pages
 
         private ObservableCollection<LogItemViewModel> GetLogsByPage(int page)
         {
-            int startIndex = (page - 1) * nbItemsPerPage;
-            int endIndex = Math.Min(startIndex + nbItemsPerPage - 1, logViewModel.LogItems.Count - 1);
+            int startIndex = (logViewModel.LogItems.Count - 1) - (nbItemsPerPage * (page - 1));
+            int endIndex = startIndex - nbItemsPerPage;
 
-            Console.WriteLine("Start : " + startIndex);
-            Console.WriteLine("End : " + endIndex);
+            Console.WriteLine($"{startIndex} {endIndex}");
+            Console.WriteLine($"{logViewModel.LogItems[0].Processus} {logViewModel.LogItems[0].Description}");
+            Console.WriteLine($"{logViewModel.LogItems[1998].Processus} {logViewModel.LogItems[1998].Description}");
 
             ObservableCollection<LogItemViewModel> pageItems = new ObservableCollection<LogItemViewModel>();
 
-            for (int i = startIndex; i <= endIndex; i++)
+            for (int i = startIndex; i > endIndex; i--)
             {
+                Console.WriteLine($"{i} {logViewModel.LogItems[i].Processus} {logViewModel.LogItems[i].Description}");
                 pageItems.Add(logViewModel.LogItems[i]);
             }
 
             return pageItems;
         }
 
-        public void NextPage()
-        {
-            if (currentPage < CountNbPage())
-            {
-                currentPage++;
-                ListLog = GetLogsByPage(currentPage);
-            }
-        }
 
-        public void PreviousPage()
-        {
-            if (currentPage > 1)
-            {
-                currentPage--;
-                ListLog = GetLogsByPage(currentPage);
-            }
-        }
     }
 }
