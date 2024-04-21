@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Loggy.Pages"
       xmlns:Converters="clr-namespace:Loggy.Converters"
       mc:Ignorable="d" 
-      d:DesignHeight="720" d:DesignWidth="1080"
+      d:DesignHeight="800" d:DesignWidth="1080"
       Title="LogsPage">
     <Page.Resources>
         <SolidColorBrush x:Key="ListBox.Static.Background" Color="#FFFFFFFF"/>
@@ -51,6 +51,36 @@
         </Style>
 
         <Converters:ColorConverter x:Key="ColorConverter" />
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <ControlTemplate x:Key="ButtonPage" TargetType="{x:Type ButtonBase}">
+            <Border Padding="5, 8" CornerRadius="2" x:Name="border" Background="{StaticResource Button.Disabled.Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="false">
+                    <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                    <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </Page.Resources>
 
     <Grid>
@@ -82,7 +112,6 @@
                 <TabItem Header="Logs style">
 
                     <StackPanel>
-                    
                         <Border Margin="10, 20, 10, 10" BorderBrush="{StaticResource scbBorderColor}" BorderThickness="0" Padding="10, 8" Background="#FF0090FF">
                             <Grid VerticalAlignment="Center">
                                 <Grid.RowDefinitions>
@@ -107,7 +136,7 @@
                         </Border>
 
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <ListView Height="640" Style="{DynamicResource ListViewStyle1}" Margin="10,2" x:Name="l_logs" ItemsSource="{Binding ListLog}" BorderThickness="0">
+                            <ListView Height="610" Style="{DynamicResource ListViewStyle1}" Margin="10,2" x:Name="l_logs" ItemsSource="{Binding ListLog}" BorderThickness="0">
                                 <ListView.ItemTemplate>
                                     <DataTemplate DataType="LogItemViewModel">
 
@@ -134,12 +163,29 @@
                                                 </StackPanel>
                                             </Grid>
                                         </Border>
-
-
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
                         </ScrollViewer>
+
+                        <Grid Margin="80, 10, 80, 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="200"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Template="{StaticResource ButtonPage}" Grid.Column="0">
+                                <TextBlock TextWrapping="Wrap">Previous page</TextBlock>
+                            </Button>
+
+                            <Label Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center">Page 1/10</Label>
+
+                            <Button Template="{StaticResource ButtonPage}" Grid.Column="2">
+                                <TextBlock TextWrapping="Wrap">Next page</TextBlock>
+                            </Button>
+
+                        </Grid>
                     </StackPanel>
 
                 </TabItem>

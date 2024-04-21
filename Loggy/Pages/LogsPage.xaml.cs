@@ -12,7 +12,7 @@ namespace Loggy.Pages
     {
         public ObservableCollection<LogItemViewModel> ListLog { get; set; }
         private LogViewModel logViewModel;
-        private int nbItemsPerPage = 60;
+        private int nbItemsPerPage = 100;
         private int currentPage = 1;
         private int nbPage = 0;
 
