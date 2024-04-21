@@ -175,13 +175,18 @@
                                 <ColumnDefinition Width="200"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Template="{StaticResource ButtonPage}" Grid.Column="0">
+                            <Button Template="{StaticResource ButtonPage}" Grid.Column="0" Click="GoToPreviousPage">
                                 <TextBlock TextWrapping="Wrap">Previous page</TextBlock>
                             </Button>
 
-                            <Label Grid.Column="1" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" HorizontalContentAlignment="Center">Page 1/10</Label>
+                            <StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <TextBlock>Page</TextBlock>
+                                <TextBlock Margin="5, 0, 0, 0" Text="{Binding CurrentPage}"></TextBlock>
+                                <TextBlock>/</TextBlock>
+                                <TextBlock Text="{Binding NbPage}"></TextBlock>
+                            </StackPanel>
 
-                            <Button Template="{StaticResource ButtonPage}" Grid.Column="2">
+                            <Button Template="{StaticResource ButtonPage}" Grid.Column="2" Click="GoToNextPage">
                                 <TextBlock TextWrapping="Wrap">Next page</TextBlock>
                             </Button>
 
